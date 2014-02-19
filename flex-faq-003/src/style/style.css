@@ -1,0 +1,28 @@
+Application
+{
+	backgroundGradientColors: #333333, #000000;
+	color: #FFFFFF;
+}
+
+Panel
+{
+	paddingTop: 10;
+	paddingBottom: 10;
+	paddingLeft: 10;
+	paddingRight: 10;
+}
+
+Label
+{
+	color: #333333;
+}
+
+TextInput
+{
+	color: #333333;
+}
+
+Button
+{
+	color: #333333;
+}

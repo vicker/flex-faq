@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute"
+	>
+	
+	<mx:Style source="style/style.css" />
+	
+	<mx:Script>
+		<![CDATA[
+			
+			private var _file_ref:FileReference;
+			
+			public function cant_download (e:MouseEvent):void
+			{
+				var t_file_ref:FileReference = new FileReference ();	// this is the main concern - function variable
+				
+				var t_url_request:URLRequest = new URLRequest ("assets/flaber.png");
+				t_file_ref.download (t_url_request);
+			}
+			
+			public function can_download (e:MouseEvent):void
+			{
+				this._file_ref = new FileReference ();	// this is the main concern - class variable
+
+				var t_url_request:URLRequest = new URLRequest ("assets/flaber.png");
+				this._file_ref.download (t_url_request);				
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Panel
+		horizontalCenter="0" verticalCenter="0"
+		title="Flex FAQ #3: Downloading a file using FileReference">
+		
+		<mx:HBox>
+			
+			<mx:VBox height="100%" horizontalAlign="center" verticalAlign="middle">
+				<mx:Image source="assets/flaber.png" />
+				<mx:Label text="assets/flaber.png" />
+			</mx:VBox>
+			
+			<mx:Spacer width="20" />
+			
+			<mx:VBox height="100%" verticalAlign="middle">
+				<mx:Button label="這個不能下載" click="{this.cant_download (event)}" />
+				<mx:Button label="This is not downloadable" click="{this.cant_download (event)}" />
+				
+				<mx:Spacer height="20" />
+				
+				<mx:Button label="這個可以下載" click="{this.can_download (event)}" />
+				<mx:Button label="This is downloadable" click="{this.can_download (event)}" />
+			</mx:VBox>
+			
+		</mx:HBox>
+		
+	</mx:Panel>
+
+	<mx:Label
+		top="10" left="10"
+		text="Fork me on Github"
+		color="#FFFFFF"
+		click="{navigateToURL (new URLRequest ('https://github.com/Vicker/flex-faq-003'));}"
+		/>
+	
+	<mx:LinkButton
+		bottom="10" right="10"
+		label="Vicker's Coding Kitchen 2007. Creative Commons License."
+		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'));}" />
+	
+</mx:Application>

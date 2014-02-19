@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute"
+	creationComplete="{this.h_creation_complete (event)}"
+	>
+	
+	<mx:Style source="style/style.css" />
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+		
+			import mx.collections.ArrayCollection;
+
+			import net.cubeforge.utils.StringUtil;
+			
+			[Bindable] public var _ac:ArrayCollection = new ArrayCollection ();
+			[Bindable] public var _is_full_screen:Boolean = false;
+			
+			private function h_creation_complete (e:FlexEvent):void
+			{
+				var t_col_1:String = StringUtil.get_lorem (1, 2, false);
+				var t_col_2:String = StringUtil.get_lorem (1, 2, false);
+				var t_col_3:String = StringUtil.get_lorem (1, 2, false);
+				
+				for (var i:uint = 0; i < 100; i++)
+				{
+					var t_obj:Object = new Object ();
+					t_obj [t_col_1] = StringUtil.get_lorem (1, 4, false);
+					t_obj [t_col_2] = StringUtil.get_lorem (1, 4, false);
+					t_obj [t_col_3] = StringUtil.get_lorem (1, 4, false);
+					
+					this._ac.addItem (t_obj);
+				}
+			}
+			
+			private function h_full_screen_button_click (e:MouseEvent):void
+			{
+				if (stage.displayState == StageDisplayState.NORMAL)
+				{
+					stage.displayState = StageDisplayState.FULL_SCREEN;
+					this._is_full_screen = true;
+				}
+				else
+				{
+					stage.displayState = StageDisplayState.NORMAL;
+					this._is_full_screen = false;
+				}
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Panel
+		top="40" bottom="40" left="20" right="20"
+		title="Flex FAQ #5: All about Full Screen">
+		
+		<mx:VBox width="100%" height="100%">
+			
+			<mx:DataGrid width="100%" height="100%" dataProvider="{this._ac}" color="#666666" />
+			
+			<mx:HBox width="100%">
+				<mx:Label width="100" text="{StringUtil.get_lorem (2, 3, false)}:" />
+				<mx:TextInput width="100%" text="{StringUtil.get_lorem (3, 5, false)}" />
+				<mx:Label
+					width="300" text="&lt; 抱歉. 我不能被修改. =.=" fontWeight="bold"
+					visible="{this._is_full_screen}" includeInLayout="{this._is_full_screen}" />
+			</mx:HBox>
+
+			<mx:HBox width="100%">
+				<mx:Label width="100" text="{StringUtil.get_lorem (2, 3, false)}:" />
+				<mx:TextInput width="100%" text="{StringUtil.get_lorem (3, 5, false)}" />
+				<mx:Label
+					width="300" text="&lt; Sorry. I can't be edited. =.=" fontWeight="bold"
+					visible="{this._is_full_screen}" includeInLayout="{this._is_full_screen}" />
+			</mx:HBox>
+			
+			<mx:HBox width="100%" horizontalAlign="right">
+				<mx:Button label="全屏幕" click="{this.h_full_screen_button_click (event)}" />
+				<mx:Button label="Full Screen" click="{this.h_full_screen_button_click (event)}" />
+			</mx:HBox>
+			
+		</mx:VBox>
+		
+	</mx:Panel>
+
+	<mx:Label
+		top="10" left="10"
+		text="Fork me on GitHub."
+		color="#FFFFFF"
+		click="{navigateToURL (new URLRequest ('https://github.com/Vicker/flex-faq-005'));}"
+		/>
+	
+	<mx:LinkButton
+		bottom="10" right="10"
+		label="Vicker's Coding Kitchen 2008. Creative Commons License."
+		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'));}" />
+	
+</mx:Application>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:Application
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	skinClass="net.cubeforge.ApplicationK"
+	>
+	
+	<fx:Script>
+		<![CDATA[
+			import net.cubeforge.PanelK;
+			
+			import spark.layouts.BasicLayout;
+			import spark.layouts.HorizontalLayout;
+			import spark.layouts.TileLayout;
+			
+			public function h_vertical_button_click (e:MouseEvent):void
+			{
+				this._group.layout = new VerticalLayout ();
+			}
+			
+			public function h_horizontal_button_click (e:MouseEvent):void
+			{
+				this._group.layout = new HorizontalLayout ();
+			}
+			
+			public function h_tile_button_click (e:MouseEvent):void
+			{
+				this._group.layout = new TileLayout ();
+			}
+			
+			public function h_circular_button_click (e:MouseEvent):void
+			{
+				this._group.layout = new CircularLayout ();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Panel
+		top="40" bottom="40" left="20" right="20"
+		title="Flex FAQ #11: Spark Layout Basics" skinClass="net.cubeforge.PanelK">
+		
+		<s:layout>
+			<s:VerticalLayout />
+		</s:layout>
+		
+		<s:Group id="_group" width="100%" height="100%" clipAndEnableScrolling="true">
+			
+			<s:Button label="1 Flex" />
+			<s:Button label="2 Flash" />
+			<s:Button label="3 Firework" />
+			<s:Button label="4 Photoshop" />
+			<s:Button label="5 Dreamweaver" />
+			<s:Button label="6 Illustrator" />
+			<s:Button label="7 SoundBooth" />
+			<s:Button label="8 Acrobat" />
+			<s:Button label="9 Lightroom" />
+			
+		</s:Group>
+		
+		<s:HGroup>
+			
+			<s:Button label="Vertical Layout" click="{this.h_vertical_button_click (event)}" />
+			<s:Button label="Horizontal Layout" click="{this.h_horizontal_button_click (event)}" />
+			<s:Button label="Tile Layout" click="{this.h_tile_button_click (event)}" />
+			<s:Button label="Custom Circular Layout" click="{this.h_circular_button_click (event)}" />
+			
+		</s:HGroup>
+		
+	</s:Panel>
+	
+	<mx:Label
+		top="10" left="10"
+		text="Fork me on GitHub"
+		color="#FFFFFF"
+		click="{navigateToURL (new URLRequest ('https://github.com/Vicker/flex-faq-011'));}"
+		/>
+	
+	<mx:LinkButton
+		bottom="10" right="10"
+		label="Vicker's Coding Kitchen 2010. Creative Commons License."
+		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'));}"
+		color="#FFFFFF" />
+	
+</s:Application>

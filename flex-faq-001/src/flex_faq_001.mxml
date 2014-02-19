@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute"
+	creationComplete="{this.t_ti.setFocus ();}">
+	
+	<mx:Style source="style/style.css" />
+	
+	<mx:Panel
+		horizontalCenter="0" verticalCenter="0"
+		title="Flex FAQ #1: Setting default TextInput">
+		
+		<mx:Label text="這個是目標 TextInput 元件:" />
+		<mx:Label text="This is the target TextInput component:" />
+		
+		<mx:TextInput id="t_ti" width="100%" />
+		
+		<mx:Spacer height="20" />
+		
+		<mx:LinkButton
+		label="解釋. Explanation."
+		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog/2007/08/04/flex-faq-1-how-to-place-flex-applications-input-cursor-focus-on-a-specific-textinput-control-by-defaul/'));}" />
+		
+	</mx:Panel>
+
+	<mx:LinkButton
+		top="10" left="10"
+		label="Fork me on GitHub"
+		click="{navigateToURL (new URLRequest ('https://github.com/Vicker/flex-faq-001'));}"
+		/>
+	
+	<mx:LinkButton
+		bottom="10" right="10"
+		label="Vicker's Coding Kitchen 2007. Creative Commons License."
+		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'));}"
+		/>
+	
+</mx:Application>
