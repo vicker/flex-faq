@@ -1,28 +1,16 @@
-Application
-{
-	backgroundGradientColors: #333333, #000000;
-	color: #FFFFFF;
-}
+@namespace s "library://ns.adobe.com/flex/spark";
 
-Panel
-{
-	paddingTop: 10;
-	paddingBottom: 10;
-	paddingLeft: 10;
-	paddingRight: 10;
-}
-
-Label
+s|Label
 {
 	color: #333333;
 }
 
-TextInput
+s|TextInput
 {
 	color: #333333;
 }
 
-Button
+s|Button
 {
 	color: #333333;
 }
