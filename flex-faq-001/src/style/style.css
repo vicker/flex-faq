@@ -1,23 +1,16 @@
-Application
+@namespace s "library://ns.adobe.com/flex/spark";
+
+s|Label
 {
-	backgroundGradientColors: #333333, #000000;
+	color: #333333;
+}
+
+s|TextInput
+{
+	color: #333333;
+}
+
+.copyright_label
+{
 	color: #FFFFFF;
-}
-
-Panel
-{
-	paddingTop: 10;
-	paddingBottom: 10;
-	paddingLeft: 10;
-	paddingRight: 10;
-}
-
-Label
-{
-	color: #333333;
-}
-
-TextInput
-{
-	color: #333333;
 }

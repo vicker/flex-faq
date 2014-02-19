@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application
-	xmlns:mx="http://www.adobe.com/2006/mxml"
-	layout="absolute"
-	creationComplete="{this.t_ti.setFocus ();}">
-	
-	<mx:Style source="style/style.css" />
-	
-	<mx:Panel
-		horizontalCenter="0" verticalCenter="0"
-		title="Flex FAQ #1: Setting default TextInput">
-		
-		<mx:Label text="這個是目標 TextInput 元件:" />
-		<mx:Label text="This is the target TextInput component:" />
-		
-		<mx:TextInput id="t_ti" width="100%" />
-		
-		<mx:Spacer height="20" />
-		
-		<mx:LinkButton
-		label="解釋. Explanation."
-		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog/2007/08/04/flex-faq-1-how-to-place-flex-applications-input-cursor-focus-on-a-specific-textinput-control-by-defaul/'));}" />
-		
-	</mx:Panel>
 
-	<mx:LinkButton
+<s:Application
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	skinClass="net.cubeforge.KApplication"
+	creationComplete="this.t_ti.setFocus ()"
+	>
+
+	<fx:Style source="style/style.css" />
+
+	<s:Panel
+		horizontalCenter="0" verticalCenter="0"
+		title="Flex FAQ #1: Setting default TextInput"
+		>
+
+		<s:layout>
+			<s:VerticalLayout
+				paddingTop="10" paddingBottom="10"
+				paddingLeft="10" paddingRight="10"
+				/>
+		</s:layout>
+
+		<s:Label text="這個是目標 TextInput 元件:" />
+		<s:Label text="This is the target TextInput component:" />
+
+		<s:TextInput id="t_ti" width="100%" />
+
+		<s:Spacer height="20" />
+
+		<s:Button
+			label="解釋. Explanation."
+			click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog/2007/08/04/flex-faq-1-how-to-place-flex-applications-input-cursor-focus-on-a-specific-textinput-control-by-defaul/'));}"
+			/>
+
+	</s:Panel>
+
+	<s:Label
 		top="10" left="10"
-		label="Fork me on GitHub"
-		click="{navigateToURL (new URLRequest ('https://github.com/Vicker/flex-faq-001'));}"
+		text="Fork me on GitHub"
+		click="navigateToURL (new URLRequest ('https://github.com/Vicker/flex-faq-001'))"
+		buttonMode="true" useHandCursor="true"
+		styleName="copyright_label"
 		/>
-	
-	<mx:LinkButton
+
+	<s:Label
 		bottom="10" right="10"
-		label="Vicker's Coding Kitchen 2007. Creative Commons License."
-		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'));}"
+		text="Vicker's Coding Kitchen 2014. CC BY-SA."
+		click="navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'))"
+		buttonMode="true" useHandCursor="true"
+		styleName="copyright_label"
 		/>
-	
-</mx:Application>
+
+</s:Application>
