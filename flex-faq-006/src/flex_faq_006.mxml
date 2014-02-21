@@ -1,140 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application
-	xmlns:mx="http://www.adobe.com/2006/mxml"
-	layout="absolute"
-	creationComplete="{this.h_creation_complete (event)}">
-	
-	<mx:Style source="style/style.css" />
-	
-	<mx:Script>
+
+<s:Application
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	skinClass="net.cubeforge.KApplication"
+	creationComplete="this.h_creation_complete ()"
+	>
+
+	<fx:Style source="style/style.css" />
+
+	<fx:Script>
 		<![CDATA[
-			import mx.effects.Resize;
-			import mx.events.FlexEvent;
-		
-			import mx.collections.ArrayCollection;
+		import mx.collections.ArrayCollection;
 
-			import net.cubeforge.utils.StringUtil;
-			
-			[Bindable] public var _ac:ArrayCollection = new ArrayCollection ();
-			[Bindable] public var _button_label:String = "Buy Now";
-			
-			private var _is_long:Boolean = true;
-			private var _is_buy:Boolean = true;
-			
-			private function h_creation_complete (e:FlexEvent):void
+		import net.cubeforge.utils.StringUtil;
+
+		[Bindable]
+		public var _ac:ArrayCollection = new ArrayCollection ();
+		[Bindable]
+		public var _button_label:String = "Buy Now";
+
+		private var _is_long:Boolean = true;
+		private var _is_buy:Boolean = true;
+
+		private function h_creation_complete ():void
+		{
+			for (var i:uint = 0; i < 5; i++)
 			{
-				for (var i:uint = 0; i < 5; i++)
-				{
-					var t_obj:Object = new Object ();
-					t_obj ["label"] = StringUtil.get_lorem (6, 10, false);
-					
-					this._ac.addItem (t_obj);
-				}
+				var t_obj:Object = new Object ();
+				t_obj ["label"] = StringUtil.get_lorem (10, 14, false);
+
+				this._ac.addItem (t_obj);
 			}
-			
-			private function h_resize_button_click (e:MouseEvent):void
+		}
+
+		private function h_resize_button_click (e:MouseEvent):void
+		{
+			if (this._is_long == true)
 			{
-				if (this._is_long == true)
-				{
-					this._box.percentWidth = 50;	
-					this._is_long = false;
-				}
-				else
-				{
-					this._box.percentWidth = 100;
-					this._is_long = true;	
-				}
+				this._group.percentWidth = 50;
+				this._is_long = false;
 			}
-			
-			private function h_switch_button_click (e:MouseEvent):void
+			else
 			{
-				if (this._is_buy == true)
-				{
-					this._button_label = "Sell All Now";
-					this._is_buy = false;
-				}
-				else
-				{
-					this._button_label = "Buy Now";
-					this._is_buy = true;
-				}
+				this._group.percentWidth = 100;
+				this._is_long = true;
 			}
-			
+		}
+
+		private function h_switch_button_click (e:MouseEvent):void
+		{
+			if (this._is_buy == true)
+			{
+				this._button_label = "Buy Buy Buy Now";
+				this._is_buy = false;
+			}
+			else
+			{
+				this._button_label = "Buy Now";
+				this._is_buy = true;
+			}
+		}
 		]]>
-	</mx:Script>
-	
-	<mx:Panel
+	</fx:Script>
+
+	<s:Panel
 		top="40" bottom="40" left="20" right="20"
-		title="Flex FAQ #6: Layout 101 Part 1">
-		
-		<mx:VBox id="_box" width="100%" height="100%" resizeEffect="Resize">
-			
-			<mx:Label text="普通的寫法." fontWeight="bold" />
-			<mx:Label text="Normal coding method." fontWeight="bold" />
-			<mx:List width="100%" height="100%" dataProvider="{this._ac}">
-				<mx:itemRenderer>
-					<mx:Component>
-						<mx:HBox>
-							<mx:Label text="{data.label}" />
-							<mx:Spacer width="100%" />
-							<mx:Button label="{outerDocument._button_label}" />
-						</mx:HBox>
-					</mx:Component>
-				</mx:itemRenderer>
-			</mx:List>
-			
-			<mx:Spacer height="10" />
-			
-			<mx:Label text="可行但複雜且不可靠的寫法." fontWeight="bold" />
-			<mx:Label text="Workable but complex and unreliable coding method." fontWeight="bold" />
-			<mx:List width="100%" height="100%" dataProvider="{this._ac}">
-				<mx:itemRenderer>
-					<mx:Component>
-						<mx:HBox>
-							<mx:Label maxWidth="{this.width - 100}" text="{data.label}" truncateToFit="true" />
-							<mx:Spacer width="100%" />
-							<mx:Button label="{outerDocument._button_label}" />
-						</mx:HBox>
-					</mx:Component>
-				</mx:itemRenderer>
-			</mx:List>
+		title="Flex FAQ #6: Layout 101 Part 1"
+		skinClass="net.cubeforge.KPanel"
+		>
 
-			<mx:Spacer height="10" />
-			
-			<mx:Label text="可行但不能解釋的寫法." fontWeight="bold" />
-			<mx:Label text="Workable but inexplicable coding method." fontWeight="bold" />
-			<mx:List width="100%" height="100%" dataProvider="{this._ac}">
-				<mx:itemRenderer>
-					<mx:Component>
-						<mx:HBox>
-							<mx:Label width="100%" minWidth="0" text="{data.label}" truncateToFit="true" />
-							<mx:Button label="{outerDocument._button_label}" />
-						</mx:HBox>
-					</mx:Component>
-				</mx:itemRenderer>
-			</mx:List>
-			
-			<mx:Spacer height="10" />
-			
-			<mx:HBox>
-				<mx:Button label="Resize Lists" click="{this.h_resize_button_click (event)}" />
-				<mx:Button label="Switch Buttons" click="{this.h_switch_button_click (event)}" />
-			</mx:HBox>
-			
-		</mx:VBox>
-		
-	</mx:Panel>
+		<s:Group id="_group" width="100%" height="100%">
 
-	<mx:Label
+			<s:layout>
+				<s:VerticalLayout
+					paddingTop="10" paddingBottom="10"
+					paddingLeft="10" paddingRight="10"
+					/>
+			</s:layout>
+
+			<s:Label text="普通的寫法." fontWeight="bold" />
+			<s:Label text="Normal coding method." fontWeight="bold" />
+			<s:List width="100%" height="100%" dataProvider="{this._ac}" useVirtualLayout="false">
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer width="100%">
+							<s:Group width="100%">
+
+								<s:layout>
+									<s:HorizontalLayout
+										paddingTop="2" paddingBottom="2" paddingLeft="2" paddingRight="2"
+										verticalAlign="middle"
+										/>
+								</s:layout>
+
+								<s:Label text="{data.label}" />
+								<s:Spacer width="100%" />
+								<s:Button label="{outerDocument._button_label}" />
+							</s:Group>
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+
+			<s:Spacer height="10" />
+
+			<s:Label text="可行但複雜且不可靠的寫法." fontWeight="bold" />
+			<s:Label text="Workable but complex and unreliable coding method." fontWeight="bold" />
+			<s:List width="100%" height="100%" dataProvider="{this._ac}" useVirtualLayout="false">
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer width="100%">
+							<s:Group width="100%">
+
+								<s:layout>
+									<s:HorizontalLayout
+										paddingTop="2" paddingBottom="2" paddingLeft="2" paddingRight="2"
+										verticalAlign="middle"
+										/>
+								</s:layout>
+
+								<s:Label maxWidth="{outerDocument._group.width - 100}" text="{data.label}" />
+								<s:Spacer width="100%" />
+								<s:Button label="{outerDocument._button_label}" />
+							</s:Group>
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+
+			<s:Spacer height="10" />
+
+			<s:Label text="最好及最高效率的寫法." fontWeight="bold" />
+			<s:Label text="Best approach with best performance." fontWeight="bold" />
+			<s:List width="100%" height="100%" dataProvider="{this._ac}" useVirtualLayout="false">
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer width="100%">
+							<s:Group top="2" bottom="2" left="2" right="2">
+
+								<s:Label verticalCenter="0" left="0" right="110" text="{data.label}" />
+								<s:Button right="2" label="{outerDocument._button_label}" />
+							</s:Group>
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+
+			<s:Spacer height="10" />
+
+			<s:Group>
+
+				<s:layout>
+					<s:HorizontalLayout />
+				</s:layout>
+				<s:Button label="Resize Lists" click="{this.h_resize_button_click (event)}" />
+				<s:Button label="Switch Buttons" click="{this.h_switch_button_click (event)}" />
+			</s:Group>
+
+		</s:Group>
+
+	</s:Panel>
+
+	<s:Label
 		top="10" left="10"
-		text="Fork me on GitHub"
-		color="#FFFFFF"
-		click="{navigateToURL (new URLRequest ('https://github.com/Vicker/flex-faq-006'));}"
+		text="Fork me on GitHub."
+		buttonMode="true" useHandCursor="true"
+		click="{navigateToURL (new URLRequest ('https://github.com/vicker/flex-faq/tree/master/flex-faq-006'));}"
+		styleName="copyright_label"
 		/>
-	
-	<mx:LinkButton
+
+	<s:Label
 		bottom="10" right="10"
-		label="Vicker's Coding Kitchen 2008. Creative Commons License."
-		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'));}" />
-	
-</mx:Application>
+		text="Vicker's Coding Kitchen 2014. CC BY-SA."
+		buttonMode="true" useHandCursor="true"
+		click="{navigateToURL (new URLRequest ('http://vicker.cubeforge.net/blog'));}"
+		styleName="copyright_label"
+		/>
+
+</s:Application>
